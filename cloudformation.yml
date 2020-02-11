@@ -1,0 +1,106 @@
+Description: >
+  This template deploys a bucket and CloudFront distribution tailored
+  for hosting a static website.
+
+Parameters:
+  WebsiteDomainName:
+    Type: String
+    Description: The full domain name of this website e.g. ui.pressint.cimpress.io
+    AllowedPattern: "(?!-)[a-zA-Z0-9-.]{1,63}(?<!-)"
+    ConstraintDescription: Must be a valid DNS zone name
+    Default: "rthr.me"
+  CertificateArn:
+    Type: String
+    Description: The ARN of the certificate to use for the Cloudfront distribution
+    Default: "arn:aws:acm:us-east-1:336977810532:certificate/32695053-098e-476a-9d76-b0ea78965aef"
+
+Resources:
+  WebsiteBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref WebsiteDomainName
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: index.html
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+    DeletionPolicy: Retain
+  WebsiteBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    DependsOn:
+      - WebSiteOriginAccessIdentity
+    Properties:
+      Bucket: !Ref WebsiteBucket
+      PolicyDocument:
+        Statement:
+          -
+            Sid: Grant a CloudFront Origin Identity access to support private content
+            Effect: Allow
+            Principal:
+              CanonicalUser: !GetAtt WebSiteOriginAccessIdentity.S3CanonicalUserId
+            Action: s3:GetObject
+            Resource: !Sub arn:aws:s3:::${WebsiteBucket}/*
+  WebsiteCloudfront:
+    Type: AWS::CloudFront::Distribution
+    DependsOn:
+      - WebsiteBucket
+      - WebSiteOriginAccessIdentity
+    Properties:
+      DistributionConfig:
+        Comment: Cloudfront Distribution pointing to S3 bucket
+        Origins:
+          - DomainName: !GetAtt WebsiteBucket.DomainName
+            Id: S3Origin
+            S3OriginConfig:
+              OriginAccessIdentity: !Sub origin-access-identity/cloudfront/${WebSiteOriginAccessIdentity}
+        ViewerCertificate:
+          SslSupportMethod: sni-only
+          AcmCertificateArn: !Ref CertificateArn
+          MinimumProtocolVersion: TLSv1.2_2018
+        Enabled: true
+        HttpVersion: http2
+        DefaultRootObject: index.html
+        Aliases:
+          - !Ref WebsiteDomainName
+        CustomErrorResponses:
+          - ErrorCachingMinTTL: 300
+            ErrorCode: 403
+            ResponseCode: 200
+            ResponsePagePath: /index.html
+          - ErrorCachingMinTTL: 300
+            ErrorCode: 404
+            ResponseCode: 200
+            ResponsePagePath: /index.html
+        DefaultCacheBehavior:
+          AllowedMethods:
+            - GET
+            - HEAD
+          Compress: true
+          TargetOriginId: S3Origin
+          ForwardedValues:
+            QueryString: true
+            Cookies:
+              Forward: none
+          ViewerProtocolPolicy: redirect-to-https
+        PriceClass: PriceClass_All
+  WebSiteOriginAccessIdentity:
+    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    Properties:
+      CloudFrontOriginAccessIdentityConfig:
+        Comment: !Sub ${WebsiteDomainName}-originaccessidentity
+
+Outputs:
+  BucketName:
+    Value: !Ref WebsiteBucket
+    Description: Name of S3 bucket to hold website content
+  CloudfrontEndpoint:
+    Value: !GetAtt WebsiteCloudfront.DomainName
+    Description: Endpoint for Cloudfront distribution
+  CloudFrontDistributionId:
+    Value: !Ref WebsiteCloudfront
+    Description: The Cloudfront distribution ID for this website (for creating invalidations)
+  FullDomain:
+    Value: !Ref WebsiteDomainName
+    Description: Full website domain name

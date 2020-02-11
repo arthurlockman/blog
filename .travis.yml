@@ -1,0 +1,27 @@
+language: ruby
+
+cache: bundler
+
+before_install: gem update bundler
+
+install:
+  - bundle install
+
+jobs:
+  include:
+    - stage: deploy site
+      if: branch = master
+      script: bundle exec jekyll build --trace
+      deploy:
+        provider: s3
+        access_key_id: $AWS_ACCESS_KEY_ID
+        secret_access_key: $AWS_SECRET_ACCESS_KEY
+        bucket: "rthr.me"
+        skip_cleanup: false
+        region: us-east-1
+        local_dir: _site
+        on:
+          branch: master
+      after_deploy:
+        - DIST_ID=$(aws cloudformation describe-stacks --stack-name blog --query "Stacks[0].Outputs[?OutputKey=='CloudFrontDistributionId'].OutputValue" --output text)
+        - aws cloudfront create-invalidation --distribution-id $DIST_ID --paths "/*"
