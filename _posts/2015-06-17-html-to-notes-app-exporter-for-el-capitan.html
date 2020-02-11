@@ -1,0 +1,25 @@
+---
+layout: post
+status: publish
+published: true
+title: HTML to Notes.app Exporter for El Capitan
+author: Arthur Lockman
+author_login: arthurlockman
+author_email: hello@rthr.me
+author_url: https://b.rthr.me
+wordpress_id: 807
+wordpress_url: http://b.rthr.me/?p=807
+date: '2015-06-17 20:24:49 -0400'
+date_gmt: '2015-06-18 01:24:49 -0400'
+---
+<p>Today I was playing around with El Capitan's new Notes app, and was interested to see if it was possible to export notes from Evernote as HTML and ingest them into Notes. I came up with this little bash/applescript that seems to do the trick. It takes in an exported folder on the command line, converts each to a rich text file, and then pastes that into notes <sup id="fnref-807-1"><a href="#fn-807-1" rel="footnote">1</a></sup>. It's not perfect, but it seems to work fairly well.</p>
+<p><em>Update 2/13/2016</em>: The next version of OS X (10.11.4) includes a feature in the Notes app that imports notes directly from Evernote. <a href="https://www.macstories.net/linked/apples-notes-app-for-mac-to-add-support-for-evernote-file-imports/">Read about it here</a>.&nbsp;</p>
+<p><script src="https://gist.github.com/arthurlockman/a5e7b3a98d722f706793.js"></script></p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn-807-1">
+Updated 6/18/2015: Added support for including attachments into created notes. It was annoying that attachments would only be included as links, and if you deleted the original folder then the links would go bad. This will add all of the note attachments as actual attachments to the created note.&#160;<a href="#fnref-807-1" rev="footnote">&#8617;</a>
+</li>
+</ol>
+</div>

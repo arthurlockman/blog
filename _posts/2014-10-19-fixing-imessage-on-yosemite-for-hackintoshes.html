@@ -1,0 +1,33 @@
+---
+layout: post
+status: publish
+published: true
+title: Fixing iMessage on Yosemite for Hackintoshes
+author: Arthur Lockman
+author_login: arthurlockman
+author_email: hello@rthr.me
+author_url: https://b.rthr.me
+wordpress_id: 551
+wordpress_url: http://b.rthr.me/?p=551
+date: '2014-10-19 13:12:45 -0400'
+date_gmt: '2014-10-19 17:12:45 -0400'
+image: https://static.rthr.me/2014/10/gsmarena_001.jpg
+---
+<p>A number of people have been reporting problems getting iMessage to work on their newly upgraded hackintosh running Yosemite. I'm happy to report that I managed to get it working! Here's what I did.</p>
+<ol>
+<li>Make sure you have a serial number. There's some debate on whether or not it has to be valid, my thinking is that it does.</li>
+<li>Switch from Chameleon/Chimera to Clover. The old FileNVRAM method doesn't work in Yosemite, and that's the only method that Chimera works with. Clover generates an actual NVRAM image that works much better. My advice is to switch, else none of this will work. <a href="http://www.skylineosx.com/installation/switching-from-chameleonchimera-to-clover/" target="_blank">I used this guide to make that switch</a>.</li>
+<li>Make sure that your ethernet port is numbered en0. If it's not, delete the file at
+<pre><code>/Library/Preferences/SystemConfiguration/NetworkInterfaces.plist</code></pre>
+<p>and restart the computer. The network interfaces should automatically renumber themselves properly.</li>
+<li>Download <a href="http://www.hackintoshosx.com/files/file/49-clover-configurator/" target="_blank">Clover Configurator</a>, and open it.</li>
+<li>Under the&nbsp;<em>Rt Variables</em> tab in the sidebar, populate the ROM and MLB fields using the calculator on that tab.</li>
+<li>Save your configuration and restart.</li>
+</ol>
+<p>You might be prompted to call Apple support before iMessage will work. Do it. They shouldn't ask for your serial number, just the code that iMessage shows and your Apple ID.</p>
+<p>Hopefully this is helpful!</p>
+<p><em>If this doesn't work for you, try some of the steps in <a href="http://www.tonymacx86.com/general-help/110471-how-fix-imessage.html" target="_blank">here</a>.</em></p>
+<h2>Update 12/27/2014</h2>
+<p><strong>This guide won't work anymore due to changes in the way Apple verified MLB and ROM values.</strong> More details on the problem can be found <a href="http://www.tonymacx86.com/general-help/110471-how-fix-imessage.html" target="_blank">on this thread</a> over at tonymacx86. I'll keep watch on that thread to see if any definite fix comes up and make a post about it here.</p>
+<h2>Update 3/8/2015</h2>
+<p>As noted on TonyMacx86, it seems iMessage works again! Take a look at the <a href="http://www.tonymacx86.com/general-help/110471-how-fix-imessage.html">How to Fix iMessage</a> guide for more information.</p>

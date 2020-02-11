@@ -1,0 +1,26 @@
+---
+layout: post
+status: publish
+published: true
+title: A Fix for SSL Certificate Problems on Mac OSX Lion
+author: Arthur Lockman
+author_login: arthurlockman
+author_email: hello@rthr.me
+author_url: https://b.rthr.me
+wordpress_id: 356
+wordpress_url: http://b.rthr.me/?p=356
+date: '2012-07-18 20:49:53 -0400'
+date_gmt: '2012-07-19 00:49:53 -0400'
+---
+<p>After doing a reinstall of Lion a few weeks ago, I found that my computer suddenly would reject every VeriSign certificate that it encountered. Using Chrome, that meant that I couldn't even access Twitter.com, because it thought that the certificate was wrong. I couldn't login to the Apple developer portal, I couldn't authenticate a device with XCode, I couldn't make a purchase at Apple.com, I couldn't download updates from the Mac App Store, and I couldn't login to Mint.com, among other sites. I essentially couldn't do anything that used a VeriSign certificate for SSL.</p>
+<p>What did I do? I called my trusty AppleCare advisor, hoping for an answer. I thought that maybe they could help me figure it out. After getting to senior support, I was told to reinstall Lion, which I did to no avail. My case was then forwarded to the Apple engineering team, with 3 to 5 days to wait until I had an answer. I looked around, through my console logs and through Keychain access, and finally came up with an answer, and a solution to my problems.</p>
+<p>It turned out that my solution was pretty simple. I had to delete a few files and reset one to its default setting.</p>
+<ol>
+<li>Delete the files <strong>/var/db/crls/crlcache.db</strong> and <strong>/var/db/crls/ocspcache.db</strong>. These can be found using Finder's Go >; Go To Folder menu (Cmd + Shift + G). This resets the cache of accepted certificates in the system. It doesn't remove them, it just forces the system to rebuild the caches upon restart.</li>
+<li>Open Keychain Access (/Applications/Utilities/Keychain Access). Select <strong>Certificates</strong> in the Category picker on the left side. In the search bar, type in the word <strong>Class</strong>. Look through that list, and find any certificates that have a blue + symbol over their icon. These are the ones you need to modify.</li>
+<li>Select one that has a blue +, and hit <strong>Command + I</strong>. Click the disclosure triangle beside the "Trust" list to show the list of permissions. Now, what we need to do is to set this certificate to use the system defaults. However, for some reason, when you select it, it doesn't save. So what you need to do is this. Under "Trust", where it says "Secure Sockets Layer (SSL)", change the dropdown menu to say "No Value Specified". Then, close the window. It will ask for your administrator permissions. Then, open the info pane for that certificate again. Under "Trust" again, now set the dropdown that says "When using this certificate:" to say "Use System Defaults". You can then close out of the info pane, and enter your password again. Do this for any of the certificates that have a blue + on their icon. There should only be one or two at most.</li>
+<li>Restart your system.</li>
+</ol>
+<p>This solution seemed to work just fine for me. All of my certificate problems have been fixed. It must be something with the OSX installer that causes this certificate issue. I'll file a bug report. Hopefully someone looks into it and fixes the flaw in the OS. And, I hope that this fixed the flaw for you.</p>
+<p><strong>Addendum</strong> - a note on security:<br />
+This procedure won't affect the security of your Mac. I've had some questions come in about that, and if anything, it makes it more secure because then sites that require SSL certificates can actually use them, unlike before where they might default to non secure connections because the certificate was bad.</p>

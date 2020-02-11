@@ -1,0 +1,44 @@
+---
+layout: post
+status: publish
+published: true
+title: A Fix for Perl, GD, ImageMagick and More on Mac OSX Tiger Server
+author: Arthur Lockman
+author_login: arthurlockman
+author_email: hello@rthr.me
+author_url: https://b.rthr.me
+wordpress_id: 128
+wordpress_url: http://b.rthr.me/?p=128
+date: '2009-09-29 20:52:25 -0400'
+date_gmt: '2009-09-29 20:52:25 -0400'
+---
+<p>Quoted from <cite>http://www.jameslockman.com/jamesblog/2009/09/fix-for-perl-gd-imagemagick-an.html</cite>:</p>
+<blockquote>
+<p><a href="http://www.jameslockman.com/jamesblog/2009/09/fix-for-perl-gd-imagemagick-an.html">  Fix for Perl, GD, ImageMagick and more on MacOSX Tiger Server - James Lockman's Blog  </a></p>
+<p>
+<!--StartFragment--><br />
+A week of frustration followed my attempt at upgrading my XServe G5 Dual Processor from Tiger Server to Leopard Server. Silly me, I made the bold assumption that Apple would have the decency to leave the underlying server parts untouched and add their secret sauce for blogs, ical, collaboration, and the like, on top of what was proven. What do I mean by proven, you ask?</p>
+<p>
+How about perl, or PHP, or MySQL? I used to have a perfectly acceptable Movable Type blog (this one, in fact) running happy as a clam on this server. I had never been able to get ImageMagick to properly install, though, as well as some convenience modules like Compress, but hey, Leopard was going to make everything all better. However, when we (props to my son <a href="https://static.rthr.me/mt_assets/">Arthur</a>, whose patience and tenacity led to success) "upgraded," nothing worked anymore. The web is full of complaints about various pieces of this puzzle, so I will leave it up to you to go digging. As for my blog and other data-driven and dynamic graphics-based sites that used to reside on this server, they were defunct. Dead. Doornail dead.<br />
+GD is important, as is DBI, DBI::MySql, ImageMagick, PerlMagick, and others. Without them, the Blog just doesn't go. Of course, the major technologies like MySQL and PHP are essential, but the versions provided by Apple were either just plain broken, or were inadequate for the tasks at hand. Of course, we reinstalled!<br />
+<a href="http://dev.mysql.com/doc/refman/5.4/en/mac-os-x-installation.html">MySQL</a> and <a href="http://www.entropy.ch/software/macosx/php/">PHP</a> installers are available and we installed them according to the clear instructions provided by MySQL.com and Marc Liyanage, respectively. The tricky part was getting the built-in PHP to shut off and the new one to turn on, but judicious application of the "refresh view" button on the server manager cured that.</p>
+<p>
+Then we turned to <a href="http://www.macports.org/">MacPorts</a>to install the additional modules. What a disaster.Not MacPorts, mind you, it performed admirably. None of the ports we installed appeared in the list of installed perl modules, despite getting successful reports from MacPorts. I admit that after a few days of banging my head against the wall, I had had enough.Giving up, we scrapped Leopard Server and went back to Tiger Server. But, we were still without some modules. </p>
+<p>
+It turns out that Apple's installation location for the remaining items is not where the rest of the world expects them to be. In the case of perl, when we check our version with CPAN, it reports that we have the current version of perl, and that our modules are installed. We were successfully able to install modules, and they all appear to install without issue, except for PerlMagick, which reports a whole pile of errors. More on that later. When we run the mt-check.cgi from the Movable Type installation, however, we get paths to multiple perl installs, none of which are the current version. Clearly, there is some major confusion here.</p>
+<p>
+The solution turns out to be easy: ditch Apple's mangled perl distribution and put in a link to the good, current installation in its place. The following two lines in the terminal move the old perl installation to a safe place where it can do no harm, and then create the appropriate symbolic link to the /opt/local/bin/perl folder, where we have all of our modules installed.</p>
+<p>sudo mv /usr/bin/perl /usr/bin/perl.orig</p>
+<p>sudo ln -s /opt/local/bin/perl /usr/bin/perl</p>
+<p>
+Voila! All of my modules are now installed and available to MovableType. GD, DBI, DBI::MySQL, Compress, and all of the others we were lacking, except for PerlMagick.</p>
+<p>
+Even though we used Ports successfully to install ImageMagick, PerlMagic fails, and it fails because of Apple's path problem. So, to install, <a href="http://www.imagemagick.org/script/perl-magick.php">download the tarbal</a>l, then follow the instructions. Here's the key, though.<br />
+Remember the /opt/... directory? In the makefile.pl file, locate the LIBS and INC entries and change "usr/" to "opt/" in all of the path references in those two lines. Then, build as normal. Double voila!</p>
+<p>
+Now, everything works as we expect it to. I can upload images and get thumbnails, I can connect to databases from my web sites and blog, and I believe that I can detect the aroma of rose coming from the exhaust fans of the XServe right about now.<br />
+<!--EndFragment--></p>
+</blockquote>
+<p><!-- #BeginTags -->
+<p class="tags"><a href="http://www.technorati.com/tag/MovableType" rel="tag">MovableType</a>,<a href="http://www.technorati.com/tag/Perl" rel="tag">Perl</a>,<a href="http://www.technorati.com/tag/GD" rel="tag">GD</a>,<a href="http://www.technorati.com/tag/ImageMagick" rel="tag">ImageMagick</a>,<a href="http://www.technorati.com/tag/DBI::MySQL" rel="tag">DBI::MySQL</a></p>
+<p><!-- #EndTags --></p>

@@ -3,7 +3,7 @@ layout: default
 ---
 <div class="post">
   <article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-    <div class="post__header section-padding--double">
+    <div class="post__header section-padding">
       <div class="grid-small">
         <h2 itemprop="name headline">{{ page.title }}</h2>
 
@@ -11,13 +11,13 @@ layout: default
       </div>
     </div>
 
-    {% if page.image %}
-      <div class="post__img">
-        <div>
-          <figure class="absolute-bg" style="background-image: url('{{ page.image }}');"></figure>
-        </div>
-      </div>
-    {% endif %}
+<!--    {% if page.image %}-->
+<!--      <div class="post__img">-->
+<!--        <div>-->
+<!--          <figure class="absolute-bg" style="background-image: url('{{ page.image }}');"></figure>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    {% endif %}-->
 
     <div class="post__content section-padding">
       <div class="grid">

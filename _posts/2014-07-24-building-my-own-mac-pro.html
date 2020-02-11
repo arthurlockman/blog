@@ -1,0 +1,136 @@
+---
+layout: post
+status: publish
+published: true
+title: Building my own Mac Pro
+author: Arthur Lockman
+author_login: arthurlockman
+author_email: hello@rthr.me
+author_url: https://b.rthr.me
+wordpress_id: 496
+wordpress_url: http://b.rthr.me/?p=496
+date: '2014-07-24 08:37:48 -0400'
+date_gmt: '2014-07-24 12:37:48 -0400'
+image: https://static.rthr.me/2014/07/2014-07-23-20.29.58-1.jpg
+---
+<h2>Intro</h2>
+<p>It became apparent this summer that my MacBook, my venerable workhorse of many years, was having a hard time keeping up with what I needed it to do. OpenCV projects were running with some serious lag, Xcode had a hard time getting started, and games weren't even something I could consider. It still worked fine for a general purpose writing machine and for running iWork and light development, but for anything heavy it wasn't the machine for the job anymore.</p>
+<p>I looked at my options. Essentially if I stuck with Apple hardware I had two: buy a Mac Pro, or a 15" MacBook Pro. Both of these are way outside my price range since I'm in college and have to be able to buy books. I really needed a workhorse for under $1000.</p>
+<p>I&nbsp;decided that my ideal setup would be to have a desktop&nbsp;<em>and</em> a laptop. I needed the portability of the laptop, since a lot of development that I do for classes is done in a lab. I also needed the power of a desktop so that I could run larger builds for long periods of time, and finally have the ability to play some games. This option would mean that I would need to buy a Mac Pro and keep my current laptop, which was still way out of my price range.</p>
+<p>I realized after a little while that I had forgotten another option:&nbsp;I could build a hackintosh. I hadn't really considered this because the last time I checked (at least 4 years ago) it seemed like building one wasn't worth the effort. Hardware support wasn't fantastic and drivers were spotty. It was hard to get a rig together that would be stable for long periods of time and not require tons of tinkering. So I researched my current options, and found them to be pretty good. The information I found made it seem like I could build one that would be stable and very powerful. This made me optimistic, so I ordered the parts.</p>
+<h2>Parts</h2>
+<p>Here's what I put together using <a href="https://pcpartpicker.com">PCPartPicker</a> <sup id="fnref-496-1"><a href="#fn-496-1" rel="footnote">1</a></sup> and <a href="http://www.tonymacx86.com/437-building-customac-buyer-s-guide-july-2014.html">tonymacx86's guide</a> for compatible hackintosh hardware:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Type</th>
+<th align="left">Item</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><strong>CPU</strong></td>
+<td align="left"><a href="http://pcpartpicker.com/part/intel-cpu-bx80646i74790k">Intel Core i7-4790K 4.0GHz Quad-Core Processor</a></td>
+</tr>
+<tr>
+<td align="left"><strong>CPU Cooler</strong></td>
+<td align="left"><a href="http://pcpartpicker.com/part/corsair-cpu-cooler-h60cw9060007ww">Corsair H60 54.0 CFM Liquid CPU Cooler</a></td>
+</tr>
+<tr>
+<td align="left"><strong>Motherboard</strong></td>
+<td align="left"><a href="http://pcpartpicker.com/part/gigabyte-motherboard-gah87md3h">Gigabyte GA-H87M-D3H Micro ATX LGA1150 Motherboard</a></td>
+</tr>
+<tr>
+<td align="left"><strong>Memory</strong></td>
+<td align="left"><a href="http://pcpartpicker.com/part/crucial-memory-blt2kit8g3d1608dt1tx0">Crucial Ballistix 16GB (2 x 8GB) DDR3-1600 Memory</a></td>
+</tr>
+<tr>
+<td align="left"><strong>Storage</strong></td>
+<td align="left"><a href="http://pcpartpicker.com/part/western-digital-internal-hard-drive-wd10ezex">Western Digital Caviar Blue 1TB 3.5" 7200RPM Internal Hard Drive</a></td>
+</tr>
+<tr>
+<td align="left"><strong>Video Card <sup id="fnref-496-2"><a href="#fn-496-2" rel="footnote">2</a></sup></strong></td>
+<td align="left"><a href="http://pcpartpicker.com/part/evga-video-card-02gp42776kr">EVGA GeForce GTX 770 2GB Dual Superclocked ACX Video Card</a></td>
+</tr>
+<tr>
+<td align="left"><strong>Case</strong></td>
+<td align="left"><a href="http://pcpartpicker.com/part/bitfenix-case-bfcclm300kkls1rp">BitFenix Colossus Micro MicroATX Mid Tower Case</a></td>
+</tr>
+<tr>
+<td align="left"><strong>Power Supply</strong></td>
+<td align="left"><a href="http://pcpartpicker.com/part/corsair-power-supply-cx750m">Corsair CX 750W 80+ Bronze Certified Semi-Modular ATX Power Supply</a></td>
+</tr>
+<tr>
+<td align="left"><strong>Case Fan</strong></td>
+<td align="left"><a href="http://pcpartpicker.com/part/corsair-case-fan-co9050008ww">Corsair Air Series SP120 High Performance Edition (2-Pack) 62.7 CFM 120mm Fans</a></td>
+</tr>
+<tr>
+<td align="left"><strong>Fan Splitter</strong></td>
+<td align="left"><a href="http://www.amazon.com/gp/product/B00B46XKKQ/ref=oh_aui_detailpage_o00_s00?ie=UTF8&amp;psc=1">Silverstone Tek Sleeved PWM Fan Splitter Cable</a></td>
+</tr>
+<tr>
+<td align="left"><strong>Bluetooth</strong></td>
+<td align="left"><a href="http://www.amazon.com/gp/product/B007GFX0PY/ref=oh_details_o00_s00_i00?ie=UTF8&amp;amp;amp;psc=1">IOGEAR Bluetooth 4.0 USB Micro Adapter</a></td>
+</tr>
+</tbody>
+</table>
+<p><em>Prices omitted since they fluctuate daily. I paid around $1000 for the parts I bought, YMMV.</em></p>
+<p>I opted to not buy a graphics card at this point because the CPU already has the integrated GPU in it. I realize that by doing that I lose the ability to play really hardcore games, but for the ones I like to play (Minecraft, Warthunder, TF2, Portal 2, etc) it would do the job way better than my current Mac does. This also allowed me to buy a much more powerful CPU, a quad-core i7 @ 4GHz. My plan right now is to look for a GPU on sale around the holidays. Historically the sales on these have been pretty good. I also didn't buy a monitor with it because I already have two that will work just fine. The same goes for the keyboard and mouse. I did buy the bluetooth 4 adapter in hopes that maybe I'll be able to get handoff working once Yosemite hits primetime.</p>
+<p>While waiting for parts I discovered what is apparently one of the biggest problems with building your own PC: the parts never come in at the same time. I ordered some from Amazon and some from Newegg, all of which should have been in before the weekend I wanted to build it on. All of my parts came in on the Thursday before, except one. The motherboard came in on the Monday after the weekend I wanted to do the build, meaning that all I could do the whole weekend was stare at the case and move the fans around to different mounting points to find exactly the right combination. Even after that whole weekend I hadn't found a fan combination that I was happy with. Maybe I will someday soon.</p>
+<p>Once I got all the parts together, it was time to build.</p>
+<h2>The Build</h2>
+<p>The actual assembly went fairly painlessly. I installed the power supply into the tray in the case, attached the motherboard, CPU cooler, and rearragned the fans. I currently have it set up with the two fans that came with the case running as intake in the top, the stock H60 fan running as intake on the bottom, and the Corsair Air Series fans running in a push-pull <sup id="fnref-496-3"><a href="#fn-496-3" rel="footnote">3</a></sup> configuration pushing air out of the back of the case through the CPU radiator.</p>
+<p>I did find some trouble with CPU thermals with the stock fans. It seemed like they just weren't pushing enough air through the radiator to efficiently cool it. For that reason I bought the two extra Corsair fans with a higher static pressure <sup id="fnref-496-4"><a href="#fn-496-4" rel="footnote">4</a></sup>. They seem to be able to better push air through the radiator and cool the CPU well enough to keep the thermals at a stable level.</p>
+<p>After installing the fans I was looking around in my BIOS settings, and found that my motherboard was feeding the CPU 1.4V at peak. This seemed a little high to me, and after research I discovered the real reason that I was having thermal trouble. 1.4V is what the CPU should be fed for an overclock rate close to 5GHz which I wasn't doing. Most suggestions stated that I should keep my voltage set around 1.2V, so I set it to that and my thermal issues disappeared <sup id="fnref-496-5"><a href="#fn-496-5" rel="footnote">5</a></sup>. At load I was seeing a peak of 80˚C, and that was with my ambient temperature at about 32˚C (yes, it gets hot without air conditioning here).</p>
+<h2>Software Installation</h2>
+<p>The biggest difficulty in this whole project was the software install. There were a few steps that deviated from the <a href="http://www.tonymacx86.com/374-unibeast-install-os-x-mavericks-any-supported-intel-based-pc.html">standard install procedure</a>. Here's what I did.</p>
+<ul>
+<li>Created a UniBeast thumb drive as described in <a href="http://www.tonymacx86.com/374-unibeast-install-os-x-mavericks-any-supported-intel-based-pc.html">tonymacx86's guide</a>.</li>
+<li>Plugged in Non-VGA monitor <sup id="fnref-496-6"><a href="#fn-496-6" rel="footnote">6</a></sup>.</li>
+<li>Booted computer from the UniBeast thumb drive plugged into one of the USB2.0 ports on the back of the machine using these boot flags: <code>-v -x UseKernelCache=No</code> <sup id="fnref-496-7"><a href="#fn-496-7" rel="footnote">7</a></sup></li>
+<li>Using disk utility in the Mac OSX installer screen, reformat the drive that you want to install OSX on with the GUID Partition Scheme and HFS+.</li>
+<li>Reboot using the same boot flags and install OSX to the hard drive that you formatted in the previous step.</li>
+<li>Once installed, reboot into the new OSX install.</li>
+<li>You will now need to install drivers using MultiBeast. Below is a list of the ones I installed.</li>
+<li>Latest Version of the Chameleon Bootloader</li>
+<li>Realtek ACL892 (HDAEnabler1.kext) + 5 Port Audio AppleHDA.kext</li>
+<li><a href="http://www.realtek.com/downloads/downloadsView.aspx?Langid=1&amp;PNid=13&amp;PFid=5&amp;Level=5&amp;Conn=4&amp;DownTypeID=3&amp;GetDown=false">Realtek RTL8111F Network Driver</a></li>
+<li>SMBios.plist for an iMac 13,2 or iMac 14,2</li>
+<li>Latest version of FakeSMC + Plugins</li>
+<li>You will then need to reboot into the installation thumb drive using boot flags <code>-v -x UseKernelCache=No</code></li>
+<li>Once in the OSX installer, open Terminal and <a href="http://www.tonymacx86.com/25-boot0-error-official-guide.html">follow this guide</a> to fix the boot sector of the drive that the Chameleon installer messed up.</li>
+<li>You should now be able to reboot into your actual install of OSX!</li>
+</ul>
+<h2>Minor Issues</h2>
+<p>Initially configuring iMessage was a pain. I found a guide that allows iMessage and iCloud to be configured properly and used on your computer. Again, <a href="http://www.tonymacx86.com/general-help/110471-how-fix-imessage.html">tonymacx86 comes to the rescue on this one</a>.</p>
+<p>The biggest small issue that I've found so far is that audio output doesn't work fully yet. I'm not sure what the reason is, but I'm assuming it has to do with a driver mismatch or something along those lines. I don't notice it though because my main audio output device is my Jawbone Jambox, which is connected via USB. I'll update this post once I figure out what the issue is.</p>
+<p><strong>UPDATE:</strong> Audio output now works! You'll need the proper audio enabler kext from <a href="https://github.com/toleda/audio_kext_enabler">here</a>, and the specific audio driver kext from <a href="https://github.com/toleda/audio_ALC892">here</a>.</p>
+<p><strong>UPDATE 2:</strong> I caved and bought the graphics card. Got it working with minimal effort. All I had to do was go into the BIOS and disable the integrated graphics, and add the GraphicsEnabler=No to the chameleon boot plist.</p>
+<h2>Wrap-Up</h2>
+<p>Overall I'm extremely pleased with this build. The thermals are stable, the computer is blazing fast, and everything runs like a genuine Mac. My performance probably isn't as good as it would be on a Mac Pro, but for around $900 I couldn't do better.</p>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn-496-1">
+If you want to see this list on PCPartPicker instead of here to compare prices and see price history, <a href="http://pcpartpicker.com/user/arthurlockman/saved/JLfFf7">here it is</a>.&#160;<a href="#fnref-496-1" rev="footnote">&#8617;</a>
+</li>
+<li id="fn-496-2">
+While I didn't buy a video card with the machine, I included one on the list because I might buy one in the future, and this is the one I would buy.&#160;<a href="#fnref-496-2" rev="footnote">&#8617;</a>
+</li>
+<li id="fn-496-3">
+<img src="https://static.rthr.me/2014/07/push-pull.png" alt="push-pull" title="Push-Pull Radiator Setup" />Push-pull was a foreign concept to me when I started this whole project. Essentially what it means is that one fan is pushing air into the radiator from one side, and another is pulling it out the other side. This leads to fairly efficient cooling.&#160;<a href="#fnref-496-3" rev="footnote">&#8617;</a>
+</li>
+<li id="fn-496-4">
+Having a higher static pressure means that the fans are much better at pushing air through a restrictive space. The radiator is very restrictive on airflow so the stock fan has a hard time pushing or pulling air through it because the fins on the radiator provide a high resistance to flow. The Corsair fans have a much higher static pressure meaning they can push through the radiator much more easily and keep it cool.&#160;<a href="#fnref-496-4" rev="footnote">&#8617;</a>
+</li>
+<li id="fn-496-5">
+I learned after this that the general rule of thumb is to set the CPU voltage as low as possible where the machine will still boot. I set it at 1.2V for safety, but you might find that you can get it to run at a lower voltage. What I say here isn't necessarily the best way to do things, it's just the way I did them.&#160;<a href="#fnref-496-5" rev="footnote">&#8617;</a>
+</li>
+<li id="fn-496-6">
+This is a long standing issue with many hackintosh configurations. VGA monitors will not work with a lot of them. I couldn't find anywhere a comprehensive explanation as to why this is the case, only that it was and there wasn't really a good fix for it.&#160;<a href="#fnref-496-6" rev="footnote">&#8617;</a>
+</li>
+<li id="fn-496-7">
+I'm not sure why these exact boot flags work, but they do.&#160;<a href="#fnref-496-7" rev="footnote">&#8617;</a>
+</li>
+</ol>
+</div>

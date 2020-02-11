@@ -1,0 +1,25 @@
+---
+layout: post
+status: publish
+published: true
+title: Configuring SublimeText for Objective C Development
+author: Arthur Lockman
+author_login: arthurlockman
+author_email: hello@rthr.me
+author_url: https://b.rthr.me
+wordpress_id: 368
+wordpress_url: http://b.rthr.me/?p=368
+date: '2012-07-30 12:05:09 -0400'
+date_gmt: '2012-07-30 16:05:09 -0400'
+---
+<p>The popular code editor SublimeText comes baked in with support for Objective C syntax highlighting. What it doesn't come with, however, is automatic error checking and decent autocomplete for Obj-c code. Fortunately, there's a plugin for SublimeText that will do just that: <a href="https://github.com/quarnster/SublimeClang/" target="_blank">SublimeClang</a>.</p>
+<p>SublimeClang adds proper syntax and error highlighting within your code, as well as autocomplete for Obj-C and C++ classes. It does take a little bit of configuration to get it working, however. Here's how I made it work for me.</p>
+<ol>
+<li>Install SublimeClang using the instructions on its <a href="https://github.com/quarnster/SublimeClang/" target="_blank">github page</a>.</li>
+<li>Install XCode from the Mac App Store, if you haven't already. Make sure you also install the iOS and Mac OS core libraries.</li>
+<li><img class="wp-image-369 alignright" title="SublimeClang Settings" src="https://static.rthr.me/2012/07/Screen-Shot-2012-07-30-at-11.51.21-AM.png" alt="" width="390" height="191" />Navigate to this menu, and open the default settings for SublimeClang. It will open a file called SublimeClang.sublime-settings. This is the file you need to modify to make it all work properly.</li>
+<li>In the SublimeClang.sublime-settings file, scroll down to about line 240 or so, and you should see a line that looks like&nbsp;<strong>"options:"</strong>&nbsp;followed by an open bracket. Inside of those brackets, you'll need to insert <a href="http://i.rthr.me/GcXv" target="_blank">these lines (if they don't already exist)</a>.</li>
+<li><img class="alignright  wp-image-371" title="Screen Shot 2012-07-30 at 11.59.12 AM" src="https://static.rthr.me/2012/07/Screen-Shot-2012-07-30-at-11.59.12-AM.png" alt="" width="341" height="376" />There's one more step to set it up. What you did in the last step was to tell SublimeClang to include those files for error checking. What you'll need to do now is to open up an Objective C header file. The ending of the file should be<strong> .h</strong>. Then, navigate to this menu, and select&nbsp;<strong>Objective C.</strong></li>
+</ol>
+<p>That should be it! Having done this, you should be able to use SublimeClang to do automatic error checking in your Objective C code.</p>
+<p>Need help? Leave a comment and I'll answer any questions you might have.</p>

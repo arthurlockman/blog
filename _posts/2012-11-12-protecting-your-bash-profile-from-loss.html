@@ -1,0 +1,31 @@
+---
+layout: post
+status: publish
+published: true
+title: Protecting Your .bash_profile from Loss
+author: Arthur Lockman
+author_login: arthurlockman
+author_email: hello@rthr.me
+author_url: https://b.rthr.me
+wordpress_id: 422
+wordpress_url: http://b.rthr.me/?p=422
+date: '2012-11-12 14:53:03 -0500'
+date_gmt: '2012-11-12 19:53:03 -0500'
+image: https://static.rthr.me/2012/11/iTerm.png
+---
+<p>Many developers and regular users frequently use the command line to get things done on their computers. I know I do. As a result, my bash profile is set up very specifically to include libraries and files I use frequently. What would happen if my computer's hard drive and backup were to go kaput? I would be out of luck, and have to configure that all again.</p>
+<p>That's how it used to be. Now, with the help of Dropbox (or any other cloud storage system that creates a folder on your computer) you can ensure your bash profile stays alive no matter what state your machine is in. This is also handy if you want to use the same bash profile on multiple machines, or make changes to it on the go. Here's how.</p>
+<p><em>This tutorial assumes you are on Mac OS. It can also be applied to Windows, however the instructions are Mac specific.</em></p>
+<ol>
+<li>Create a new terminal window, and change the path to your user directory.Use this command: <code>cd ~/</code></li>
+<li>
+<p>Copy your .bash-profile to your safe location. For the purposes of this tutorial, I'm putting it in my dropbox, but you can substitute any path you like. Here's the command:</p>
+<p><code>cp .bash_profile ~/Dropbox/bash_profile</code></p>
+<p>You'll notice that I didn't include the dot in front of the bash profile file that I placed into the dropbox. This is necessary because dropbox doesn't sync files that have are hidden (have a dot in front of their name).</p>
+</li>
+<li>Delete your old bash profile: <code>sudo rm .bash_profile</code></li>
+<li>Link the bash profile in your dropbox back to where the old one used to be: <code>ln -s ~/Dropbox/bash_profile .bash_profile</code></li>
+</ol>
+<p>Voila! Your bash profile now lives safely and happily in your dropbox. You can follow steps 3 and 4 on another machine if you wish to use the same bash profile in both places.</p>
+<p>Enjoy your newly protected and synced bash profile!</p>
+<p><em>Thanks to <a href="https://alpha.app.net/skylarsch" target="_blank">Skylar Schipper</a> for this <a href="https://alpha.app.net/skylarsch/post/1504663" target="_blank">tip</a>.&nbsp;</em></p>

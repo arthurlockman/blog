@@ -1,9 +1,9 @@
 ---
 layout: page
 title: About Me
-image: https://static.rthr.me/images/arthur-batuu-2019-08-17.jpeg
 ---
 
+<img src="https://static.rthr.me/images/arthur-batuu-2019-08-17.jpeg"/>
 ## Howdy! My name is Arthur Lockman.
 
 I'm a .NET Core and Angular developer at Vistaprint. I specialize in building cloud-first
