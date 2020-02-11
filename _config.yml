@@ -83,3 +83,5 @@ exclude:
   - README.md
   - vendor
   - .idea
+  - package-lock.yml
+  - cloudformation.yml
