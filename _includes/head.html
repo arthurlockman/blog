@@ -49,4 +49,32 @@
   .littlefoot-footnote__host > button:before, button:after {
     border: none !important;
   }
+  /**
+   * The following code will make a github embedded gists responsive
+   * The gist will be 100% in width width, and scroll if a line is to long
+   * if you want wrapping, uncomment the wrapping section
+   * Do note that indentation may be butchered tough
+   */
+  .gist{
+    width:100%;
+    & table{
+  	table-layout: fixed;
+    }
+    & td.js-line-number{
+  	// We need an explicit width for the other column to be auto
+  	width: 50px; 
+  		text-align: center;
+  	}
+    // Enable wrapping and disable horizontal scrolling
+    & .blob-code-inner{
+  	 white-space: pre-wrap; 
+  	 whites-space: wrap;
+  	 word-wrap:break-word;
+   }
+  }
+ pre {
+     overflow-x: scroll;
+     white-space: normal;
+     word-break: break-word;
+  }
 </style>
