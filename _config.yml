@@ -1,7 +1,7 @@
 # Site/SEO settings
 email: hello@rthr.me
 baseurl: ""
-permalink: /:year/:month/:day/:title/
+permalink: /:year/:month/:title/
 google_analytics: UA-52979039-1
 
 name: Arthur Lockman
