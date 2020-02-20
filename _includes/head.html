@@ -44,8 +44,55 @@
   </script>
 {% endif %}
 
-<link rel="stylesheet" href="https://unpkg.com/littlefoot/dist/littlefoot.css"/>
+<link rel="stylesheet" href="{{ '/assets/css/littlefoot.css' | prepend: site.baseurl }}"/>
 <style>
+  @media (prefers-color-scheme: dark) {
+    body {
+      color: #f6f6f6;
+      background-color: #222222;
+    }
+    .header, .related {
+      color: #f6f6f6;
+      background-color: #363636;
+    }
+    a, .popup__open {
+      color: #f6f6f6 !important;
+    }
+    .posts__img {
+      background: transparent;
+    }
+    pre, code {
+      background: #6e6e6e;
+      color: #f6f6f6;
+    }
+    .zoom-overlay {
+      background-color: #000000;
+    }
+    .zoom-overlay__exit:before, .zoom-overlay__exit:after {
+      background-color: #f6f6f6;
+    }
+    .contact__container {
+      color: #f6f6f6;
+      background-color: #222222;
+    }
+    .form input, .form textarea {
+      color: #f6f6f6;
+      border-bottom: 2px solid #f6f6f6;
+    }
+    .form__btn:after, .form__btn:before {
+      border: 2px solid #f6f6f6;
+    }
+    .littlefoot-footnote, .littlefoot-footnote__wrapper, .littlefoot-footnote__tooltip, .littlefoot-footnote__content {
+      background: #363636;
+      color: #f6f6f6;
+    }
+    .littlefoot-footnote.is-scrollable .littlefoot-footnote__wrapper::before {
+      background-image: linear-gradient(to bottom, #222222 50%, #363636 100%);
+    }
+    .littlefoot-footnote.is-scrollable .littlefoot-footnote__wrapper::after {
+      background-image: linear-gradient(to top, #222222 50%, #363636 100%);
+    }
+  }
   .littlefoot-footnote__host > button:before, button:after {
     border: none !important;
   }
@@ -62,12 +109,12 @@
     }
     & td.js-line-number{
   	// We need an explicit width for the other column to be auto
-  	width: 50px; 
+  	width: 50px;
   		text-align: center;
   	}
     // Enable wrapping and disable horizontal scrolling
     & .blob-code-inner{
-  	 white-space: pre-wrap; 
+  	 white-space: pre-wrap;
   	 whites-space: wrap;
   	 word-wrap:break-word;
    }
@@ -78,3 +125,60 @@
      word-break: break-word;
   }
 </style>
+
+<script>
+  const exifImageLoaded = (imageUrl) => {
+    const img = document.getElementById(imageUrl);
+    window.exifr.parse(img).then(exif => {
+      console.log(exif);
+      const exifContainer = document.getElementById(`${imageUrl}-exif`);
+      const captionContainer = document.getElementById(`${imageUrl}-caption`);
+      if (!!exif.LensModel && exif.LensModel.toLocaleLowerCase().includes('iphone')) {
+        const cameraModelText = document.createElement('p');
+        cameraModelText.style.marginBottom = '0';
+        cameraModelText.innerText = `📱 ${exif.LensModel}`;
+        exifContainer.appendChild(cameraModelText);
+      } else {
+        if (!!exif.Model) {
+          const cameraModelText = document.createElement('p');
+          cameraModelText.style.marginBottom = '0';
+          cameraModelText.innerText = `📷 ${exif.Model}`;
+          exifContainer.appendChild(cameraModelText);
+        }
+        if (!!exif.LensModel) {
+          const cameraModelText = document.createElement('p');
+          cameraModelText.style.marginBottom = '0';
+          cameraModelText.innerHTML = `&emsp; ${exif.LensModel}`;
+          exifContainer.appendChild(cameraModelText);
+        }
+      }
+      if (!!exif.FNumber && !!exif.ExposureTime) {
+        const exposureText = document.createElement('p');
+        exposureText.style.marginBottom = '0';
+        exposureText.innerHTML = `🕒 ${exif.ExposureTime} seconds @ f/${exif.FNumber}`;
+        exifContainer.appendChild(exposureText);
+      }
+      if (!!exif.ISO) {
+        const isoText = document.createElement('p');
+        isoText.style.marginBottom = '0';
+        isoText.innerHTML = `🎞️ ISO ${exif.ISO}`;
+        exifContainer.appendChild(isoText);
+      }
+      if (!!exif.DateTimeOriginal) {
+        const dateText = document.createElement('p');
+        dateText.style.marginBottom = '0';
+        dateText.innerHTML = `📅 ${moment(exif.DateTimeOriginal).format('YYYY-MM-DD HH:mm')}`;
+        exifContainer.appendChild(dateText);
+      }
+      if (!!exif.latitude && !!exif.longitude) {
+        const mapLink = document.createElement('a');
+        mapLink.href = `http://maps.apple.com/?ll=${exif.latitude},${exif.longitude}&z=20&q={{ include.caption }}`;
+        mapLink.target = "_blank";
+        const mapImg = document.createElement('img');
+        mapImg.src = `https://www.mapquestapi.com/staticmap/v5/map?zoom=15&size=400,100@2x&type=hyb&center=${exif.latitude},${exif.longitude}&imagetype=JPEG&key=zofk41Z77v9DEr0EhgHaQQoyw5yWoAUh&locations=${exif.latitude},${exif.longitude}|marker-green`;
+        mapLink.appendChild(mapImg);
+        captionContainer.appendChild(mapLink);
+      }
+    });
+  };
+</script>

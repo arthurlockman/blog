@@ -20,7 +20,7 @@ layout: compress
 
   {% include footer.html %}
 
-  <script src="https://unpkg.com/littlefoot/dist/littlefoot.js" type="application/javascript"></script>
+  <script src="{{ '/assets/js/littlefoot.js' | prepend: site.baseurl }}" type="application/javascript"></script>
   <script type="application/javascript">littlefoot.default()</script>
 </body>
 </html>
