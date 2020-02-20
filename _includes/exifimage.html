@@ -1,0 +1,61 @@
+<!-- {% include exifimage.html imageUrl="https://static.rthr.me/share/_DSC3805.jpeg" caption="Fireworks at the magic kingdom" %} -->
+<script>
+  const imageLoaded = () => {
+    const img = document.getElementById('{{ include.imageUrl }}');
+    window.exifr.parse(img).then(exif => {
+      console.log(exif);
+      const exifContainer = document.getElementById('{{ include.imageUrl }}-exif');
+      const captionContainer = document.getElementById('{{ include.imageUrl }}-caption');
+      if (!!exif.Model) {
+        const cameraModelText = document.createElement('p');
+        cameraModelText.style.marginBottom = '0';
+        cameraModelText.innerText = `📷 ${exif.Model}`;
+        exifContainer.appendChild(cameraModelText);
+      }
+      if (!!exif.LensModel) {
+        const cameraModelText = document.createElement('p');
+        cameraModelText.style.marginBottom = '0';
+        cameraModelText.innerHTML = `&emsp; ${exif.LensModel}`;
+        exifContainer.appendChild(cameraModelText);
+      }
+      if (!!exif.FNumber && !!exif.ExposureTime) {
+        const exposureText = document.createElement('p');
+        exposureText.style.marginBottom = '0';
+        exposureText.innerHTML = `🕒 ${exif.ExposureTime} seconds @ f/${exif.FNumber}`;
+        exifContainer.appendChild(exposureText);
+      }
+      if (!!exif.ISO) {
+        const isoText = document.createElement('p');
+        isoText.style.marginBottom = '0';
+        isoText.innerHTML = `🎞️ ISO ${exif.ISO}`;
+        exifContainer.appendChild(isoText);
+      }
+      if (!!exif.DateTimeOriginal) {
+        const dateText = document.createElement('p');
+        dateText.style.marginBottom = '0';
+        dateText.innerHTML = `📅 ${exif.DateTimeOriginal.toLocaleString()}`;
+        exifContainer.appendChild(dateText);
+      }
+      if (!!exif.latitude && !!exif.longitude) {
+        const mapLink = document.createElement('a');
+        mapLink.href = `http://maps.apple.com/?ll=${exif.latitude},${exif.longitude}&z=20&q={{ include.caption }}`;
+        mapLink.target = "_blank";
+        const mapImg = document.createElement('img');
+        mapImg.src = `https://www.mapquestapi.com/staticmap/v4/getmap?zoom=10&size=400,125&type=map&pois=mcenter,${exif.latitude},${exif.longitude}|&imagetype=JPEG&key=zofk41Z77v9DEr0EhgHaQQoyw5yWoAUh`;
+        mapLink.appendChild(mapImg);
+        captionContainer.appendChild(mapLink);
+      }
+    });
+  };
+</script>
+<img src="{{ include.imageUrl }}" id="{{ include.imageUrl }}" onload="imageLoaded()"/>
+<div style="display: grid; grid-template-columns: 60% 40%; column-gap: 1rem;">
+    <div id="{{ include.imageUrl }}-caption">
+        <p>
+            <i>{{ include.caption }}</i>
+        </p>
+    </div>
+    <div id="{{ include.imageUrl }}-exif">
+    </div>
+</div>
+<br/>
