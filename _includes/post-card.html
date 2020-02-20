@@ -9,7 +9,14 @@
       <h2 class="posts__text"><strong itemprop="name">{{ post.title }}</strong></h2>
       <i>{{ post.date | date: '%B %d, %Y' }}</i>
       <p itemprop="description">
+        {% if post.spoilertopic %}
+        {{ post.brief }}
+        <strong>This post contains spoilers for {{ post.spoilertopic }}.</strong>
+        {% elsif post.brief %}
+        {{ post.brief | strip_html }}
+        {% else %}
         {{ post.content | strip_html | truncatewords: 35, "" }}...
+        {% endif %}
       </p>
     </div>
   </a>

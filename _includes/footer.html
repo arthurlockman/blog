@@ -18,8 +18,10 @@
 {% endif %}
 
 <script src="{{ '/assets/js/app.min.js' | prepend: site.baseurl }}"></script>
-<script src="{{ '/assets/js/photo-scripts.js' | prepend: site.baseurl }}"></script>
-<!-- exifr include -->
-<script src="{{ '/assets/js/lite.umd.js' | prepend: site.baseurl }}"></script>
 <!-- moment.js -->
 <script src="{{ '/assets/js/moment.min.js' | prepend: site.baseurl }}"></script>
+<!-- spoiler hider -->
+<script src="{{ '/assets/js/spoiler.js' | prepend: site.baseurl }}"></script>
+<script>
+    spoilerAlert('spoiler, .spoiler', {max: 15, partial: 5});
+</script>
