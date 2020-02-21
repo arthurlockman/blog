@@ -1,4 +1,4 @@
-const exifImageLoaded = (imageUrl) => {
+const exifImageLoaded = (imageUrl, caption) => {
   const img = document.getElementById(imageUrl);
   window.exifr.parse(img).then(exif => {
     const exifContainer = document.getElementById(`${imageUrl}-exif`);
@@ -42,7 +42,7 @@ const exifImageLoaded = (imageUrl) => {
     }
     if (!!exif.latitude && !!exif.longitude) {
       const mapLink = document.createElement('a');
-      mapLink.href = `http://maps.apple.com/?ll=${exif.latitude},${exif.longitude}&z=20&q={{ include.caption }}`;
+      mapLink.href = `http://maps.apple.com/?ll=${exif.latitude},${exif.longitude}&z=20&q=${caption}`;
       mapLink.target = '_blank';
       const mapImg = document.createElement('img');
       mapImg.src = `https://www.mapquestapi.com/staticmap/v5/map?zoom=15&size=400,100@2x&type=hyb&center=${exif.latitude},${exif.longitude}&imagetype=JPEG&key=zofk41Z77v9DEr0EhgHaQQoyw5yWoAUh&locations=${exif.latitude},${exif.longitude}|marker-green`;
