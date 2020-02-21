@@ -47,6 +47,14 @@
       var applyBlur = function(radius) {
         el.style.filter = 'blur('+radius+'px)';
         el.style.webkitFilter = 'blur('+radius+'px)';
+        // wtf safari https://coderwall.com/p/n78zsw/css3-filter-and-issues-on-retina-displays
+        el.style.webkitTransform = 'translateZ(0)';
+      }
+
+      var removeBlur = function() {
+        el.style.filter = '';
+        el.style.webkitFilter = '';
+        el.style.webkitTransform = '';
       }
 
       applyBlur(maxBlur);
@@ -68,7 +76,7 @@
             el['data-spoiler-state'] = 'revealed';
             el.title = '';
             el.style.cursor = 'auto';
-            applyBlur(0);
+            removeBlur(0);
             break;
         }
       })
