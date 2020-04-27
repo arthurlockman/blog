@@ -18,7 +18,7 @@ const exifImageLoaded = (imageUrl, caption) => {
       if (exif.LensModel) {
         const cameraModelText = document.createElement('p');
         cameraModelText.style.marginBottom = '0';
-        cameraModelText.innerHTML = `&emsp; ${exif.LensModel}`;
+        cameraModelText.innerHTML = `&emsp; ${convertLens(exif.LensModel)}`;
         exifContainer.appendChild(cameraModelText);
       }
     }
@@ -99,3 +99,13 @@ const fraction = (decimal) => {
   //return the fraction after simplifying it
   return ((whole==='0')?'' : whole+' ')+((isNaN(decimal))?'' : decimal/t+'/'+num/t);
 };
+
+const convertLens = (lensExif) => {
+  switch (lensExif) {
+    case "35.0 mm f/1.4":
+      return "Sigma 35mm f/1.4 Art"
+      break;
+    default:
+      return lensExif;
+  }
+}
