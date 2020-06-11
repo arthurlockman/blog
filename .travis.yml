@@ -26,3 +26,4 @@ jobs:
       after_deploy:
         - DIST_ID=$(aws cloudformation describe-stacks --stack-name blog --query "Stacks[0].Outputs[?OutputKey=='CloudFrontDistributionId'].OutputValue" --output text)
         - aws cloudfront create-invalidation --distribution-id $DIST_ID --paths "/*"
+        - aws s3 cp s3://arthurlockman-static-assets/ s3://arthurlockman-static-assets/ --recursive --cache-control max-age=315360000 --exclude "share/*" --exclude "mt_assets/*" --exclude "201[1-9]/*"
