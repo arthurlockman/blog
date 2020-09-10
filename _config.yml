@@ -43,10 +43,10 @@ pagination:
   enabled: true
   debug: false
   per_page: 12
-  permalink: '/page/:num/'
-  title: ':title'
+  permalink: "/page/:num/"
+  title: ":title"
   limit: 0
-  sort_field: 'date'
+  sort_field: "date"
   sort_reverse: true
 autopages:
   enabled: true
@@ -56,9 +56,9 @@ autopages:
     enabled: false
   tags:
     layouts:
-      - 'tag.html'
-    title: '[Untitled1.cs]'
-    permalink: '/tag/:tag'
+      - "tag.html"
+    title: "[Untitled1.cs]"
+    permalink: "/tag/:tag"
     slugify:
       mode: raw
       cased: true

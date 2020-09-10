@@ -1,88 +1,159 @@
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>{% if page.title %}{{ page.title | escape }} | {{ site.title }}{% else %}{{ site.title | escape }}{% endif %}</title>
-<meta name="description" content="{{ site.description }}">
+<meta property="fb:app_id" content="251326881556005" />
 
-<meta itemprop="name" content="{{ site.name }}">
-<meta itemprop="description" content="{% if page.description %}{{ page.description | escape }}{% else %}{{ site.description }}{% endif %}">
-<meta itemprop="image" content="{% if page.image %}{{ page.image | absolute_url }}{% else %}{{ site.default_img | absolute_url }}{% endif %}">
+<title>
+  {% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape
+  }}{% endif %}
+</title>
+<meta name="description" content="{{ site.description }}" />
 
-<meta property="og:url" content="{{ page.url | absolute_url }}">
-<meta property="og:type" content="website">
-<meta property="og:title" content="{% if page.title %}{{ page.title | escape }} | {{ site.title }}{% else %}{{ site.title | escape }}{% endif %}">
-<meta property="og:site_name" content="{{ site.title }}">
-<meta property="og:description" content="{% if page.description %}{{ page.description | escape }}{% else %}{{ site.description }}{% endif %}">
-<meta property="og:image" content="{% if page.image %}{{ page.image | absolute_url }}{% else %}{{ site.default_img | absolute_url }}{% endif %}">
+<meta itemprop="name" content="{{ site.name }}" />
+<meta
+  itemprop="description"
+  content="{% if page.description %}{{ page.description | escape }}{% else %}{{ site.description }}{% endif %}"
+/>
+<meta
+  itemprop="image"
+  content="{% if page.image %}{{ page.image | absolute_url }}{% else %}{{ site.default_img | absolute_url }}{% endif %}"
+/>
 
-<meta name="twitter:url" content="{{ page.url | absolute_url }}">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="{% if page.title %}{{ page.title | escape }} | {{ site.title }}{% else %}{{ site.title | escape }}{% endif %}">
-<meta name="twitter:site" content="{{ site.title }}">
-<meta name="twitter:description" content="{% if page.description %}{{ page.description | escape }}{% else %}{{ site.description }}{% endif %}">
+<meta property="og:url" content="{{ page.url | absolute_url }}" />
+<meta property="og:type" content="website" />
+<meta
+  property="og:title"
+  content="{% if page.title %}{{ page.title | escape }} | {{ site.title }}{% else %}{{ site.title | escape }}{% endif %}"
+/>
+<meta property="og:site_name" content="{{ site.title }}" />
+<meta
+  property="og:description"
+  content="{% if page.description %}{{ page.description | escape }}{% else %}{{ site.description }}{% endif %}"
+/>
+<meta
+  property="og:image"
+  content="{% if page.image %}{{ page.image | absolute_url }}{% else %}{{ site.default_img | absolute_url }}{% endif %}"
+/>
+
+<meta name="twitter:url" content="{{ page.url | absolute_url }}" />
+<meta name="twitter:card" content="summary" />
+<meta
+  name="twitter:title"
+  content="{% if page.title %}{{ page.title | escape }} | {{ site.title }}{% else %}{{ site.title | escape }}{% endif %}"
+/>
+<meta name="twitter:site" content="{{ site.title }}" />
+<meta
+  name="twitter:description"
+  content="{% if page.description %}{{ page.description | escape }}{% else %}{{ site.description }}{% endif %}"
+/>
 {% if site.twitter_username %}
-  <meta name="twitter:creator" content="@{{ site.twitter_username }}">
+<meta name="twitter:creator" content="@{{ site.twitter_username }}" />
 {% endif %}
-<meta property="twitter:image" content="{% if page.image %}{{ page.image | absolute_url }}{% else %}{{ site.default_img | absolute_url }}{% endif %}">
+<meta
+  property="twitter:image"
+  content="{% if page.image %}{{ page.image | absolute_url }}{% else %}{{ site.default_img | absolute_url }}{% endif %}"
+/>
 
-<link rel="icon" type="image/x-icon" href="{{ 'https://static.rthr.me/images/favicon.ico' | prepend: site.baseurl }}">
+<link
+  rel="icon"
+  type="image/x-icon"
+  href="{{ 'https://static.rthr.me/images/favicon.ico' | prepend: site.baseurl }}"
+/>
 
-<link rel="stylesheet" href="{{ '/assets/css/app.min.css' | prepend: site.baseurl }}">
+<link
+  rel="stylesheet"
+  href="{{ '/assets/css/app.min.css' | prepend: site.baseurl }}"
+/>
 
-<link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | prepend: site.baseurl }}">
-<link rel="canonical" href="{{ page.url | replace: 'index.html', '' | prepend: site.baseurl }}">
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title="{{ site.title }}"
+  href="{{ '/feed.xml' | prepend: site.baseurl }}"
+/>
+<link
+  rel="canonical"
+  href="{{ page.url | replace: 'index.html', '' | prepend: site.baseurl }}"
+/>
 
 {% if site.google_analytics %}
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    ga('create', '{{ site.google_analytics }}', 'auto');
-    ga('send', 'pageview');
-  </script>
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i["GoogleAnalyticsObject"] = r;
+    (i[r] =
+      i[r] ||
+      function () {
+        (i[r].q = i[r].q || []).push(arguments);
+      }),
+      (i[r].l = 1 * new Date());
+    (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m);
+  })(
+    window,
+    document,
+    "script",
+    "//www.google-analytics.com/analytics.js",
+    "ga"
+  );
+  ga("create", "{{ site.google_analytics }}", "auto");
+  ga("send", "pageview");
+</script>
 {% endif %}
 
-<link rel="stylesheet" href="{{ '/assets/css/littlefoot.css' | prepend: site.baseurl }}"/>
+<link
+  rel="stylesheet"
+  href="{{ '/assets/css/littlefoot.css' | prepend: site.baseurl }}"
+/>
 <style>
   @media (prefers-color-scheme: dark) {
     body {
       color: #f6f6f6;
       background-color: #222222;
     }
-    .header, .related {
+    .header,
+    .related {
       color: #f6f6f6;
       background-color: #363636;
     }
-    a, .popup__open {
+    a,
+    .popup__open {
       color: #f6f6f6 !important;
     }
     .posts__img {
       background: transparent;
     }
-    pre, code {
+    pre,
+    code {
       background: #6e6e6e;
       color: #f6f6f6;
     }
     .zoom-overlay {
       background-color: #000000;
     }
-    .zoom-overlay__exit:before, .zoom-overlay__exit:after {
+    .zoom-overlay__exit:before,
+    .zoom-overlay__exit:after {
       background-color: #f6f6f6;
     }
     .contact__container {
       color: #f6f6f6;
       background-color: #222222;
     }
-    .form input, .form textarea {
+    .form input,
+    .form textarea {
       color: #f6f6f6;
       border-bottom: 2px solid #f6f6f6;
     }
-    .form__btn:after, .form__btn:before {
+    .form__btn:after,
+    .form__btn:before {
       border: 2px solid #f6f6f6;
     }
-    .littlefoot-footnote, .littlefoot-footnote__wrapper, .littlefoot-footnote__tooltip, .littlefoot-footnote__content {
+    .littlefoot-footnote,
+    .littlefoot-footnote__wrapper,
+    .littlefoot-footnote__tooltip,
+    .littlefoot-footnote__content {
       background: #363636;
       color: #f6f6f6;
     }
@@ -93,7 +164,8 @@
       background-image: linear-gradient(to top, #222222 50%, #363636 100%);
     }
   }
-  .littlefoot-footnote__host > button:before, button:after {
+  .littlefoot-footnote__host > button:before,
+  button:after {
     border: none !important;
   }
   /**
@@ -102,30 +174,29 @@
    * if you want wrapping, uncomment the wrapping section
    * Do note that indentation may be butchered tough
    */
-  .gist{
-    width:100%;
-    & table{
-  	table-layout: fixed;
+  .gist {
+    width: 100%;
+    & table {
+      table-layout: fixed;
     }
-    & td.js-line-number{
-  	// We need an explicit width for the other column to be auto
-  	width: 50px;
-  		text-align: center;
-  	}
+    & td.js-line-number {
+      // We need an explicit width for the other column to be auto
+      width: 50px;
+      text-align: center;
+    }
     // Enable wrapping and disable horizontal scrolling
-    & .blob-code-inner{
-  	 white-space: pre-wrap;
-  	 whites-space: wrap;
-  	 word-wrap:break-word;
-   }
+    & .blob-code-inner {
+      white-space: pre-wrap;
+      whites-space: wrap;
+      word-wrap: break-word;
+    }
   }
- pre {
-     overflow-x: scroll;
-     white-space: normal;
-     word-break: break-word;
+  pre {
+    overflow-x: scroll;
+    white-space: normal;
+    word-break: break-word;
   }
 </style>
 <!-- exifr include -->
 <script src="{{ '/assets/js/lite.umd.js' | prepend: site.baseurl }}"></script>
 <script src="{{ '/assets/js/photoscripts.js' | prepend: site.baseurl }}"></script>
-
