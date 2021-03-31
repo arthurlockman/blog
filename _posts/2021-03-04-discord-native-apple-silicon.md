@@ -14,7 +14,7 @@ tags:
 I love my M1 MacBook Air. It's the fastest and quietest computer I've ever owned. Over
 the past few months I've transitioned to using it as my main machine for all of my work.
 Almost all of the apps I use on a daily basis have been transitioned already to work
-on the new architecture natively, and the ones that are left on Rosetta are working 
+on the new architecture natively, and the ones that are left on Rosetta are working
 perfectly fine for the most part.
 
 There's one notable exception to that though: non-native Electron apps are garbage. They
@@ -30,7 +30,7 @@ as Discord continues to not address their migration strategy. Discord being an E
 app at heart though does present an interesting possibility: the ability to wrap it
 in Electron ourselves.
 
-Enter `nativefier`. 
+Enter `nativefier`.
 [`nativefier` is an open-source tool](https://github.com/nativefier/nativefier) that makes
 it easy to wrap any website in a basic Electron wrapper. With a one-line command it's
 very easy to wrap Discord in a native app with almost all of the features of the official
@@ -55,3 +55,17 @@ What you'll get is a native Electron-powered version of the Discord app. Notific
 audio, and video all seem to work. I'm super happy with the results here. This will
 definitely hold me over until Discord gets their act together and publishes a truly
 native build of their app for M1.
+
+## Update (2021-03-31)
+
+A reader wrote in with an additional userdata script that you can inject into the Electron app to make it look and feel more like the normal version of Discord for macOS.
+
+Create a file called `discord-platform-osx.js` in your working directory with these contents:
+
+<script src="https://gist.github.com/arthurlockman/c1df2c566e52af1febc896244b10ad3e.js"></script>
+
+Then, run this nativifier script instead of the one above:
+
+<script src="https://gist.github.com/arthurlockman/da9d9368f04bbea386f6ee510e103f57.js"></script>
+
+Using this userdata script and new arguments will give you a Discord window that has the hidden titlebar just like the "real" version. It works like a charm!
